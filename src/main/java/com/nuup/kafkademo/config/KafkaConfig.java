@@ -18,15 +18,6 @@ import java.util.Map;
 
 @Configuration
 public class KafkaConfig {
-/*
-    @Bean
-    public NewTopic topic() {
-        return TopicBuilder.name("cambios-de-accion")
-                .partitions(1)
-                .replicas(1)
-                .build();
-    }
-*/
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 

@@ -3,9 +3,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class StockPriceChangeGenerator {
-    public String generateStockPriceChangeMessage(int messageId) {
+    public String generateStockPriceChangeMessage(Double messageId) {
         // Aquí puedes implementar la lógica para generar un mensaje de cambio de precio de una acción de bolsa
         // Puedes incluir detalles como el nombre de la acción, el precio anterior y el nuevo precio, etc.
-        return "Mensaje de cambio de precio #" + messageId;
+        return "valor de accion" + messageId;
     }
 }
