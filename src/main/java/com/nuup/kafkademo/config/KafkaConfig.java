@@ -1,5 +1,6 @@
 package com.nuup.kafkademo.config;
 
+import com.nuup.kafkademo.productors.KafkaProducer;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ public class KafkaConfig {
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, KafkaProducer.StockPartitioner.class);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
