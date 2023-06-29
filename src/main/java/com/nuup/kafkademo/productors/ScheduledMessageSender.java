@@ -26,11 +26,20 @@ public class ScheduledMessageSender {
     @Scheduled(fixedDelay = 1000) // Ejecutar cada 2 segundos
     public void sendScheduledMessage() {
         int messageId = 1;
-        double stockPrice = kafkaProducer.generateRandomStockPrice();
+        int messagesPerSecond = 1000;
+        long delay = 1000 / messagesPerSecond; // Retraso entre cada mensaje en milisegundos
         String stockType = getRandomStockType();
-        String message = stockPriceChangeGenerator.generateStockPriceChangeMessage(stockPrice);
-        kafkaProducer.sendMessage(message, stockType);
-        System.out.println("Mensaje programado enviado: " + message + ", Tipo de Acción: " + stockType);
+        for (int i = 0; i < messagesPerSecond; i++) {
+            double stockPrice = kafkaProducer.generateRandomStockPrice();
+            String message = stockPriceChangeGenerator.generateStockPriceChangeMessage(stockPrice);
+            kafkaProducer.sendMessage(message, stockType);
+            System.out.println("Mensaje programado enviado: " + message + ", Tipo de Acción: " + stockType);
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private String getRandomStockType() {
