@@ -15,7 +15,7 @@ public class KafkaProducer {
     }
 
     public void sendMessage(String message) {
-        kafkaTemplate.send("cambios-de-accion-2", message);
+        kafkaTemplate.send("cambios-de-accion", message);
         System.out.println("Mensaje enviado: " + message);
     }
 }
