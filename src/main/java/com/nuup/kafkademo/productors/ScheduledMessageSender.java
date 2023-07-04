@@ -23,7 +23,7 @@ public class ScheduledMessageSender {
         this.random = new Random();
     }
 
-    @Scheduled(fixedDelay = 1000) // Ejecutar cada 2 segundos
+    @Scheduled(fixedDelay = 1000000000000) // Ejecutar cada 2 segundos
     public void sendScheduledMessage() {
         int messageId = 1;
         int messagesPerSecond = 1000;
